@@ -49,4 +49,79 @@ var FLAP = 620;
 var SPAWN_RATE = 1/1.2;
 var OPENING = 134;
 
-var 
+var state = {
+  preload: preload,
+  create: create,
+  update: update,
+  render: render
+};
+
+var parent = document.querySelector('#screen');
+
+var game = new Phaser.Game(
+  0,
+  0,
+  Phaser.CANVAS,
+  parent,
+  state,
+  false,
+  false
+);
+
+var gameStarted,
+  gameOver,
+  score,
+  bg,
+  credits,
+  clouds,
+  fingers,
+  invs,
+  bird
+  fence,
+  scoreText,
+  instText,
+  
+  gameOverText,
+  flapSnd,
+  scoreSnd,
+  hurtSnd,
+  fingersTimer,
+  cloudsTimer;
+  
+    main() - just subroutines and variable declarations
+    preload() - links Phaser to assets
+    create() - creates the game board; calls reset(), flap(), and spawnCloud()
+    reset() - sets gameStarted = false; gameOver = false; score = 0;
+    start() - begin game; calls spawnFingers()
+    flap() - calls start()
+    spawnCloud() - creates clouds
+    spawnFinger(fingerY, flipped) - creates finger; calls o()
+    o()
+    spawnFingers() - calls spawnFinger() and o()
+    addScore( _ , inv)
+    setGameOver() - calls reset()
+    update() - calls setGameOver() and addScore()
+    render() - only runs in debug mode
+ */ 
+ 
+//Global variables, i.e., global to everything
+var DEBUG = false;
+var SPEED = 900;
+var GRAVITY = 50;
+var FLAP = 650;
+var SPAWN_RATE = 1/1.2;
+var OPENING = 150;
+ 
+WebFontConfig = {
+  google: { families:['Press+Start+2P::latin']},
+  active: main
+};
+
+(function () {
+  var wf = document.createElement ('script');
+  wf.src = ('https.'==document.location.protocol ? 'https' : 'http') +
+  '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+  wf.type = 'text/javascript';
+  
+
+    
