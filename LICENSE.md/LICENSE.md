@@ -122,6 +122,75 @@ WebFontConfig = {
   wf.src = ('https.'==document.location.protocol ? 'https' : 'http') +
   '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
   wf.type = 'text/javascript';
+  wf.async = 'true';
+  var s = document.getElementsByTagName ('script')[0];
+  s.parentNode.insertBefore (wf, s);
+}) ();
+function main () {
+  //"parent" and "game" and "state" are semi-global", i.e., global to everything between the two red lines
+var state = {
+    preload: preload,
+    create: create,
+    update: update,
+    render: render,
+  };
+  var parent = document.querySelector ('#screen');
   
+  var game = new Phaser.Game (
+    0,
+    0,
+    Phaser.CANVAS
+    parent,
+    state,
+    false,
+    false,
+  );
+//"gameStarted", "gameOver", "score", "bg", etc. are semi-global", i.e., global to everything between the two red lines
+//The type of each of these variables will be determined at first use.
 
+  var gameStarted,
+    gameOver,
+    score,
+    bg,
+    credits,
+    clouds,
+    fingers,
+    invs,
+    birdie,
+    fence,
+    scoreText,
+    instText,
+    gameOverText,
+    flapSnd,
+    scoreSnd,
+    hurtSnd,
+    fingerTimer,
+    cloudsTimer,
+    
+  function preload () {           //assign YOUR GAME specific assets - images and sounds
+    var assets = {
+      spritesheet: {
+        birdie: ['assets/birdie.png', 35, 35],
+        clouds: ['assets/clouds.png', 128, 64]
+      },
+      image: {
+        finger: ['assets/finger.png', 90, 323],
+        fence: ['assets/fence.png', 189, 60],
+      },
+      audio: {
+        flap: ['assets/flap.wav',
+/*          score: ['assets/score.wav'],*/
+        hurt: ['assets/score.wav'],/*
+      }
+  };
+  Object.keys (assets.forEach (function (type) {
+    Object.keys (assets[type]).forEach (function (id) {
+      game.load[type].apply (game.load, [id].concat (assets[type][id]));
+    });
+  });
+}
+
+function create () {         //provide YOUR GAME -specific attributes for use with Phaser
+  // Set world dimensions
+  var screenWidth = parent.clientWidth > window.innerWidth ? window.innerWidth : 
     
