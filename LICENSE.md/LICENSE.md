@@ -193,4 +193,16 @@ var state = {
 function create () {         //provide YOUR GAME -specific attributes for use with Phaser
   // Set world dimensions
   var screenWidth = parent.clientWidth > window.innerWidth ? window.innerWidth : 
-    
+  var screenHeight = parent.clientHeight>window.innerHeight?window.innerHeight:parent.clientHeight;
+  game.world.width = screenWidth;
+  game.world.height = screenHeight;
+  
+  //Draw bg (background)
+  bg = game.add.graphics (0,0);
+  bg.beginFill (0xDDEEFF, 1);
+  bg.drawRect (0,0, game.world.width, game.world.height);
+  bg.endFill ();
+  
+  //Credits - size, shape, and color of credits "box", font spec
+  credits = game.add.text (
+  
